@@ -1,0 +1,142 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CardIcons
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: iPhone
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 50
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    - serializedVersion: 3
+      m_BuildTarget: Android
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 50
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    - serializedVersion: 3
+      m_BuildTarget: Server
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 12
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: da4dd82be91f24d38855cf597259d4fc, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: a890b100dad1f4d1a9b3a1ecc2d253c6, type: 3}
+  - {fileID: 21300000, guid: 8c85ada0761e3481e97e48380180266c, type: 3}
+  - {fileID: 21300000, guid: 494d6241323944e1ea82fee95fc89eaf, type: 3}
+  - {fileID: 21300000, guid: 43d376829c84347399c6ebf21dc5a9c9, type: 3}
+  - {fileID: 21300000, guid: 02183e920b1ae41d7a275dd84a2bac38, type: 3}
+  - {fileID: 21300000, guid: 71c34fd22e9eb4ee7b00331a96487a4b, type: 3}
+  - {fileID: 21300000, guid: 11515433edd304bbc9f1a886f3064e4c, type: 3}
+  - {fileID: 21300000, guid: 98511863d9a414ef598cdc247c3124b9, type: 3}
+  - {fileID: 21300000, guid: fad932d53d79b4c4f83f1ab5b0eccbc4, type: 3}
+  - {fileID: 21300000, guid: 84feaf0607dd8403db1d450c940607fd, type: 3}
+  - {fileID: 21300000, guid: 6700c41637fb24417abf5cc2ac3d0256, type: 3}
+  - {fileID: 21300000, guid: 8177ce169fe0a4561a1c532074893d02, type: 3}
+  - {fileID: 21300000, guid: 48d02ba7538724f1f9c121bed7a1a0b4, type: 3}
+  - {fileID: 21300000, guid: 966e1e189a1f448ebbfced11a9b7fa02, type: 3}
+  - {fileID: 21300000, guid: f99f24488b948446084a9f2cd824ba85, type: 3}
+  - {fileID: 21300000, guid: 8be94448387cd4814b57608f2e7dd7d3, type: 3}
+  - {fileID: 21300000, guid: e5da08683e2bf499ab86654f5e3cbdc7, type: 3}
+  - {fileID: 21300000, guid: 6930fe6837a4748a39ecde9dad9c0b43, type: 3}
+  - {fileID: 21300000, guid: 54ceedb8ff5414464b1e58fbb7174c2c, type: 3}
+  - {fileID: 21300000, guid: 13fe02094f01b4a90b3c962164d72856, type: 3}
+  - {fileID: 21300000, guid: 86995619e81d4425dae68d1edd8635a0, type: 3}
+  - {fileID: 21300000, guid: 074d30397d62a4e38bc3ea16f32f54f6, type: 3}
+  - {fileID: 21300000, guid: a359e07adee1743239399e1a1531ddfc, type: 3}
+  - {fileID: 21300000, guid: 8342059a5dc0d4e40a8b832907e284e3, type: 3}
+  - {fileID: 21300000, guid: 79b0915b6fcce45ff8956f4f3ce9553a, type: 3}
+  - {fileID: 21300000, guid: f76e5c9b04ba541aeb39c3e521c9293f, type: 3}
+  - {fileID: 21300000, guid: e4d098ab6d4f44909975b49cc51d0379, type: 3}
+  - {fileID: 21300000, guid: c390ae6c57f334d029c9fbbc0cf7d5bc, type: 3}
+  - {fileID: 21300000, guid: e590c8cc7a8a042fa9163499b99ed02d, type: 3}
+  - {fileID: 21300000, guid: 9872703da752041cbbffce68ffd2e378, type: 3}
+  - {fileID: 21300000, guid: d7390add9bee24cfcb2fca68a411ed60, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - 0
+  - 25
+  - 27
+  - 17
+  - 22
+  - 4
+  - 3
+  - 11
+  - 26
+  - 10
+  - 14
+  - 1
+  - 23
+  - 28
+  - Front
+  - 8
+  - 15
+  - 5
+  - 16
+  - 21
+  - 6
+  - 12
+  - 19
+  - 24
+  - 13
+  - 9
+  - 18
+  - 29
+  - 2
+  - 20
+  - 7
+  m_RenderDataMap: {}
+  m_Tag: CardIcons
+  m_IsVariant: 0
