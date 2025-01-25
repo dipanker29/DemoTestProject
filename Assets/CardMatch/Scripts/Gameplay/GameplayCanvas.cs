@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,11 @@ namespace CardMatch.Gameplay
         [SerializeField] private Text matchesText;
         [SerializeField] private Text turnsText;
         [SerializeField] private Text scoreText;
+        [SerializeField] private GameObject gameOverPanel;
+
+        public static System.Action<int> OnScoreChanged;
+        public static System.Action<int> OnMatchesChanged;
+        public static System.Action<int> OnTurnsChanged;
 
         // Start is called before the first frame update
         void Start()
@@ -17,11 +23,58 @@ namespace CardMatch.Gameplay
 
         }
 
-        public void UpdateUI(int matches, int turns, int score)
+        private void OnEnable()
+        {
+            OnScoreChanged += UpdateScore;
+            OnMatchesChanged += UpdateMatches;
+            OnTurnsChanged += UpdateTurns;
+            GameplayController.OnGameStatusEvent += OnGameplayStatusChanged;
+        }
+        private void OnDisable()
+        {
+            OnScoreChanged -= UpdateScore;
+            OnMatchesChanged -= UpdateMatches;
+            OnTurnsChanged -= UpdateTurns;
+            GameplayController.OnGameStatusEvent -= OnGameplayStatusChanged;
+        }
+
+        private void UpdateScore(int score)
+        {
+            scoreText.text = $"{score}";
+        }
+
+        private void OnGameplayStatusChanged(string status)
+        {
+            ShowGameOverPanel(status == "GameOver");
+        }
+
+        private void UpdateMatches(int matches)
         {
             matchesText.text = $"{matches}";
+        }
+        private void UpdateTurns(int turns)
+        {
             turnsText.text = $"{turns}";
-            scoreText.text = $"{score}";
+        }
+
+        private void ShowGameOverPanel(bool active)
+        {
+            gameOverPanel.SetActive(active);
+        }
+
+        public void OnClickMenuButton()
+        {
+
+        }
+
+        public void OnClickRestartButton()
+        {
+            GameplayController.OnRestartGameEvent?.Invoke();
+            ShowGameOverPanel(false);
+        }
+
+        public void OnClickNextButton()
+        {
         }
     }
 }

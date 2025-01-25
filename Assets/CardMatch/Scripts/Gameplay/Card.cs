@@ -8,7 +8,17 @@ namespace CardMatch.Gameplay
     public class Card : MonoBehaviour
     {
         [SerializeField] private Text cardText;
-        
+        [SerializeField] private Image cardImage;
+        [SerializeField] private CardFlip cardFlip;
+
+        void Awake()
+        {
+            if (TryGetComponent<CardFlip>(out var cardFlip))
+            {
+                this.cardFlip = cardFlip;
+            }
+        }
+
         public int CardId => cardID;
         
         private int cardID;
@@ -23,8 +33,13 @@ namespace CardMatch.Gameplay
         public void InitCard(int cardID)
         {
             this.cardID = cardID;
-            cardText.enabled = false;
-            cardText.text = GetAlphaNumericString(cardID);
+            // cardText.enabled = false;
+            // cardText.text = GetAlphaNumericString(cardID);
+        }
+
+        public void SetSprite(Sprite sprite)
+        {
+            cardImage.sprite = sprite;
         }
 
         public void FlipCard()
@@ -32,13 +47,15 @@ namespace CardMatch.Gameplay
             if (!isFlipped)
             {
                 isFlipped = true;
-                cardText.enabled = true;
+                // cardText.enabled = true;
+                cardFlip.StartFlip();
                 GameplayController.OnCardFlippedEvent?.Invoke(this);
             }
             else
             {
                 isFlipped = false;
-                cardText.enabled = false;
+                // cardText.enabled = false;
+                cardFlip.StartFlip();
             }
         }
 

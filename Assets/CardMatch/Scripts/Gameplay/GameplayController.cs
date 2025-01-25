@@ -2,20 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.U2D;
 using UnityEngine.UI;
 
 namespace CardMatch.Gameplay
 {
     public class GameplayController : MonoBehaviour
     {
-        [SerializeField] private GameplayCanvas gameplayCanvas;
+        // [SerializeField] private GameplayCanvas gameplayCanvas;
         [SerializeField] private Card cardPrefab;
         [SerializeField] private Transform gridParent;
         [SerializeField] private int rows = 2;
         [SerializeField] private int columns = 2;
+        [SerializeField] private SpriteAtlas spriteAtlas;
+
+        public static System.Action<Card> OnCardFlippedEvent;
+        public static System.Action OnRestartGameEvent;
+        public static System.Action<string> OnGameStatusEvent;
 
         public static bool CanSelectCard { get; private set; } = true;
-        public static System.Action<Card> OnCardFlippedEvent;
         private List<Card> flippedCards = new List<Card>();
         private int turns = 0;
         private int matches = 0;
@@ -25,17 +30,32 @@ namespace CardMatch.Gameplay
         // Start is called before the first frame update
         private void Start()
         {
-            GenerateGrid();
+            StartGame();
         }
 
         private void OnEnable()
         {
             OnCardFlippedEvent += OnCardFlipped;
+            OnRestartGameEvent += StartGame;
         }
 
         private void OnDisable()
         {
             OnCardFlippedEvent -= OnCardFlipped;
+            OnRestartGameEvent -= StartGame;
+        }
+
+        public void StartGame()
+        {
+            turns = 0;
+            matches = 0;
+            comboCount = 0;
+            score = 0;
+            flippedCards.Clear();
+            GameplayCanvas.OnScoreChanged?.Invoke(score);
+            GameplayCanvas.OnMatchesChanged?.Invoke(matches);
+            GameplayCanvas.OnTurnsChanged?.Invoke(turns);
+            GenerateGrid();
         }
 
         #region Card Generation
@@ -43,8 +63,14 @@ namespace CardMatch.Gameplay
         // Generate the card grid dynamically
         private void GenerateGrid()
         {
+            // Destroy all existing cards
+            foreach (Transform child in gridParent)
+            {
+                Destroy(child.gameObject);
+            }
+
             int totalCards = rows * columns;
-            int totalPairs = totalCards - totalCards % 4;
+            // int totalPairs = totalCards - totalCards % 4;
             int[] cardIDs = GenerateCardIDs(totalCards);
 
             ShuffleCardIDs(ref cardIDs);// Shuffle the card IDs
@@ -53,6 +79,11 @@ namespace CardMatch.Gameplay
             {
                 Card card = Instantiate(cardPrefab, gridParent);
                 card.InitCard(cardIDs[i]);
+                Sprite sprite = spriteAtlas.GetSprite(cardIDs[i].ToString());
+                if (sprite != null)
+                {
+                    card.SetSprite(sprite);
+                }
             }
 
             if (gridParent.TryGetComponent(out GridLayoutGroup gridLayoutGroup))
@@ -101,7 +132,9 @@ namespace CardMatch.Gameplay
                 CheckMatch();
             }
 
-            gameplayCanvas.UpdateUI(matches: matches, turns: turns, score: score);
+            GameplayCanvas.OnScoreChanged?.Invoke(score);
+            GameplayCanvas.OnMatchesChanged?.Invoke(matches);
+            GameplayCanvas.OnTurnsChanged?.Invoke(turns);
         }
 
         void CheckMatch()
@@ -117,9 +150,11 @@ namespace CardMatch.Gameplay
                 comboCount++;
                 score += 10 * comboCount; // Combo bonus
 
-                if (matches == (rows * columns) / 4)
+                if (matches == rows * columns / 2)
                 {
                     Debug.Log("Game Over");
+                    OnGameStatusEvent?.Invoke("GameOver");
+                    // gameplayCanvas.ShowGameOverPanel(true);
                 }
             }
             else
@@ -134,7 +169,7 @@ namespace CardMatch.Gameplay
 
         IEnumerator UnflipCards()
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.8f);
             flippedCards[0].FlipCard();
             flippedCards[1].FlipCard();
             flippedCards.Clear();
