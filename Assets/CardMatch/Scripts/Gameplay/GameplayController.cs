@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.U2D;
 using UnityEngine.UI;
+using CardMatch.Sound;
 
 namespace CardMatch.Gameplay
 {
@@ -123,6 +124,7 @@ namespace CardMatch.Gameplay
 
         private void OnCardFlipped(Card card)
         {
+            AudioManager.OnPlaySoundEvent?.Invoke(SoundFx.Flip);
             flippedCards.Add(card);
 
             if (flippedCards.Count == 2)
@@ -141,6 +143,7 @@ namespace CardMatch.Gameplay
         {
             if (flippedCards[0].CardId == flippedCards[1].CardId)
             {
+                AudioManager.OnPlaySoundEvent?.Invoke(SoundFx.Match);
                 matches++;
                 flippedCards[0].SetMatched();
                 flippedCards[1].SetMatched();
@@ -154,11 +157,13 @@ namespace CardMatch.Gameplay
                 {
                     Debug.Log("Game Over");
                     OnGameStatusEvent?.Invoke("GameOver");
+                    AudioManager.OnPlaySoundEvent?.Invoke(SoundFx.GameOver);
                     // gameplayCanvas.ShowGameOverPanel(true);
                 }
             }
             else
             {
+                AudioManager.OnPlaySoundEvent?.Invoke(SoundFx.Mismatch);
                 comboCount = 0;
                 score -= 5; // Penalty for mismatch
                 StartCoroutine(UnflipCards());
