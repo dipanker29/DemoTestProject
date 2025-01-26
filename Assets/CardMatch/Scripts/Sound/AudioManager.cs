@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace CardMatch.Sound
 {
+    /// <summary>
+    /// This AudioManager class is responsible for managing audio playback in gameplay.
+    /// </summary>
     public class AudioManager : MonoBehaviour
     {
         [SerializeField] private AudioSource audioSource;
@@ -50,6 +53,10 @@ namespace CardMatch.Sound
             }
         }
 
+        /// <summary>
+        /// Plays a sound effect one time.
+        /// </summary>
+        /// <param name="clip">The sound effect to play.</param>
         public void PlaySound(AudioClip clip)
         {
             audioSource.PlayOneShot(clip);
