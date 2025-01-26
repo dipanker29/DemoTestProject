@@ -11,11 +11,20 @@ namespace CardMatch.Gameplay
 
         private bool cardBackIsActive;
 
+        /// <summary>
+        /// Starts a coroutine to flip the card.
+        /// </summary>
         public void StartFlip()
         {
             StartCoroutine(CalculateFlip());
         }
 
+        /// <summary>
+        /// Flips the card.
+        /// 
+        /// If the card back is active, this method will disable the card back.
+        /// If the card back is inactive, this method will enable the card back.
+        /// </summary>
         private void Flip()
         {
             if (cardBackIsActive)

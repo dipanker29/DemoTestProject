@@ -17,12 +17,6 @@ namespace CardMatch.Gameplay
         public static System.Action<int> OnMatchesChanged;
         public static System.Action<int> OnTurnsChanged;
 
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
         private void OnEnable()
         {
             OnScoreChanged += UpdateScore;
@@ -62,9 +56,16 @@ namespace CardMatch.Gameplay
             gameOverPanel.SetActive(active);
         }
 
+        #region Button Events
+
+        public void OnClickCloseButton()
+        {
+            ShowGameOverPanel(true);
+        }
+
         public void OnClickMenuButton()
         {
-
+            GameManager.Instance.LoadScene("Menu");
         }
 
         public void OnClickRestartButton()
@@ -76,5 +77,7 @@ namespace CardMatch.Gameplay
         public void OnClickNextButton()
         {
         }
+
+        #endregion Button Events
     }
 }
