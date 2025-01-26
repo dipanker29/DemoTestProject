@@ -121,10 +121,10 @@ namespace CardMatch.Progress
         /// </summary>
         public void UpdateHighestScore()
         {
-            if (score > highestScore)
-            {
-                highestScore = score;
-            }
+            if (highestScore > 0 && highestScore > score)
+                return;
+
+            highestScore = score;
         }
     }
 
